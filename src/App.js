@@ -2,37 +2,21 @@ import React, {useState} from "react"
 import "./App.css"
 
 function App() {
-  // task
-  const [item, setItem] = useState('')
-  // list of tasks
+  const [task, setTask] = useState("")
   const [list, setList] = useState([])
-  
-  function addItem() {
-    const task = {
-      id: Math.random(),
-      value: item
-    }
-    setList(oldList => [...oldList, task])
-    setItem("")
-    console.log(list)
-  }
-  function deleteItem(id) {
-    const arr = list.filter(i => i.id !== id);
-    setList(arr)
+  const add = () => {
+    setList(old => [...old, task])
+    setTask("")
   }
   return (
-    <div className="app"> 
-      <h1>TodoList</h1>
-        <input 
-        type="text" 
-        value={item}
-        onChange={e=>setItem(e.target.value)}
-      />
-      <button onClick={() => addItem()}>add</button>
+    <div className="App"> 
+      <h1>todolist</h1>
+      <input type="text" value={task} onChange={e => setTask(e.target.value)}/>
+      <button onClick={() => add()}>add</button>
       <ul>
-        {list.map(i => {
+        {list.map(item => {
           return(
-            <li key={i.id}>{i.value} <button onClick={() => deleteItem(i.id)}>X</button></li>
+            <li>{item}</li>
           )
         })}
       </ul>
