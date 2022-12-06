@@ -2,21 +2,23 @@ import React, {useState} from "react"
 import "./App.css"
 
 function App() {
-  const [task, setTask] = useState("")
+  const [todo, setTodo] = useState('')
   const [list, setList] = useState([])
   const add = () => {
-    setList(old => [...old, task])
-    setTask("")
+    setList([...list, todo])
+    console.log(list)
   }
   return (
     <div className="App"> 
-      <h1>todolist</h1>
-      <input type="text" value={task} onChange={e => setTask(e.target.value)}/>
-      <button onClick={() => add()}>add</button>
+      <input type="text"
+        value={todo}
+        onChange ={e => setTodo(e.target.value)}
+      />
+      <button onClick={add}>add</button>
       <ul>
-        {list.map(item => {
-          return(
-            <li>{item}</li>
+        {list.map(i => {
+          return (
+            <li key={i.id}>{i}</li>
           )
         })}
       </ul>
